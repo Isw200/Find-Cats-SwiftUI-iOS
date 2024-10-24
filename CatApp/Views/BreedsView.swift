@@ -9,7 +9,8 @@ import SwiftUI
 
 struct BreedsView: View {
     @StateObject var breedsViewModel: BreedsViewViewModel = BreedsViewViewModel()
-    
+    @Environment(\.isSearching) private var isSearching
+
     var body: some View {
         
         NavigationStack {
@@ -18,14 +19,22 @@ struct BreedsView: View {
                     ProgressView()
                 }
             } else {
-                List(breedsViewModel.breeds, id: \.id) { breed in
-                    VStack(alignment: .leading) {
-                        NavigationLink(destination: CatDetailView(selectedCat: breed)) {
+                VStack{
+                    if breedsViewModel.isLoading {
+                        VStack {
+                            ProgressView()
+                        }
+                    }
+                    
+                    List(breedsViewModel.breeds, id: \.id) { breed in
+                        VStack(alignment: .leading) {
                             BreedRowItem(breed: breed)
                         }
                     }
+                    .listStyle(PlainListStyle())
                 }
-                .navigationTitle("Cats")
+                .searchable(text: $breedsViewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+                .navigationTitle("Catpedia 🐈")
             }
         }
         .onAppear{

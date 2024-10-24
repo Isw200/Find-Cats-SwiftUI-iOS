@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BreedDTO: Codable {
+struct BreedDTO: Codable, Identifiable {
     let weight: WeightDTO
     let id, name: String
     let cfaURL: String?
@@ -79,12 +79,12 @@ var dummyBreed: BreedDTO {
            lifeSpan: "14 - 15 years",
            indoor: 0,
            lap: 0,
-           altNames: "Abby",
+           altNames: "",
            adaptability: 5,
            affectionLevel: 4,
            childFriendly: 3,
            dogFriendly: 3,
-           energyLevel: 5,
+           energyLevel: 3,
            grooming: 2,
            healthIssues: 2,
            intelligence: 5,

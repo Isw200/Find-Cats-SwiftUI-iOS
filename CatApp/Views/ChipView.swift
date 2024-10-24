@@ -16,8 +16,8 @@ struct ChipView: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 10)
-        .foregroundStyle(.black.opacity(0.6))
-        .background(Color.gray.opacity(0.4))
+        .foregroundStyle(.gray.opacity(1))
+        .background(Color.gray.opacity(0.1))
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)

@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct SearchView: View {
+    @StateObject var searchViewModel: SearchViewModel = SearchViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if searchViewModel.breeds.isEmpty {
+                Color.clear
+                    .frame(height: 0)
+            } else {
+                List(searchViewModel.breeds, id: \.id) { breed in
+                    VStack {
+                        Text(breed.name)
+                            .font(.headline)
+                    }
+                }
+                .listStyle(.plain)
+            }
+        }
+        
     }
 }
 
