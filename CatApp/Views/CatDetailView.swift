@@ -77,6 +77,8 @@ struct CatDetailView: View {
                     .padding(.vertical, 10)
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
+                    
+                    // Chips view
                 
                     VStack {
                         if let temperament = selectedCat.temperament {
@@ -87,6 +89,8 @@ struct CatDetailView: View {
                     }
                     .frame(height: CGFloat((selectedCat.temperament?.split(separator: ",").count ?? 0) * 23))
 
+                    // Links to Safari views
+                    
                     Text("Want to know more about this cat?")
                     
                     HStack(alignment: .top) {
@@ -120,6 +124,8 @@ struct CatDetailView: View {
                         .font(.system(size: 20, weight: .semibold))
                         .padding(.top, 10)
                         .padding(.bottom, 5)
+                    
+                    // Table
                     
                     TableView(selectedCat: selectedCat)
                     

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BreedRowItem: View {
     @State var breed: BreedDTO
-    var temperaments : [String] = []
     @State private var isExpanded: Bool = false
     
     var body: some View {

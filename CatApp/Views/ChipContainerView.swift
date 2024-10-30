@@ -11,30 +11,33 @@ struct ChipContainerView: View {
     @State var chipArray: [ChipModel] = []
     
     var body: some View {
-        var width = CGFloat.zero
-        var height = CGFloat.zero
+        var horizontalPosition: CGFloat = CGFloat.zero
+        var verticalPosition: CGFloat = CGFloat.zero
+        
         return GeometryReader { geo in
             ZStack(alignment: .topLeading, content: {
                 ForEach(chipArray) { data in
                     ChipView(text: data.text)
                         .padding(.all, 5)
                         .alignmentGuide(.leading) { dimension in
-                            if (abs(width - dimension.width) > geo.size.width) {
-                                width = 0
-                                height -= dimension.height
+                            if (abs(horizontalPosition - dimension.width) > geo.size.width) {
+                                horizontalPosition = 0
+                                verticalPosition -= dimension.height
                             }
-                            let result = width
+                            let result = horizontalPosition
+                            
                             if data.id == chipArray.last!.id {
-                                width = 0
+                                horizontalPosition = 0
                             } else {
-                                width -= dimension.width
+                                horizontalPosition -= dimension.width
                             }
+                            
                             return result
                         }
                         .alignmentGuide(.top) { dimension in
-                            let result = height
+                            let result = verticalPosition
                             if data.id == chipArray.last!.id {
-                                height = 0
+                                verticalPosition = 0
                             }
                             return result
                         }
@@ -44,8 +47,6 @@ struct ChipContainerView: View {
     }
 }
 
-struct ChipContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChipContainerView()
-    }
+#Preview {
+    ChipContainerView()
 }
